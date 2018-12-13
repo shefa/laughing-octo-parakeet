@@ -1,0 +1,126 @@
+<head>
+  <title>Personal geography test</title>
+</head>
+
+<body>
+    <div class="ui vertical masthead center aligned segment">
+        {{>menu}}
+        {{>hello}} 
+    </div>
+    {{>footer}}
+</body>
+
+<template name="hello">
+    <div class="ui text container left aligned">
+        <div class="ui relaxed grid container stuff">
+            <div class="ten wide column"><h2 class="ui dividing header">{{#with municipality}}{{name}}{{/with}}</h2></div>
+            <div class="six wide column">
+                {{#if hinted}}
+                    <h2 class="ui dividing header">
+                        {{#if guessed}}
+                            {{#with province}}{{name}}{{/with}}
+                        {{else}}
+                            Province ???
+                        {{/if}}
+                    </h2>
+                {{/if}}
+            </div>
+            <div class="ten wide column">
+                <div class="ui raised segment container">
+                {{#with municipality}}
+                    <div class="content">
+                        <a class="header">{{area}} km<sup>2</sup></a>
+                        <div class="header">{{population}} people (2011 count)</div>
+                        <div class="meta">
+                          <span class="cinema">{{cities}} cities, {{villages}} villages</span>
+                        </div>
+                    </div>
+                {{/with}}
+                </div>
+            </div>
+            <div class="six wide column">
+                {{#if hinted}}
+                    <div class="ui raised segment container">
+                        {{#with province}}
+                            <div class="content">
+                                <a class="header">{{area}} km<sup>2</sup></a>
+                                <div class="header">{{population}} people (2011 count)</div>
+                                <div class="header">{{municipalitiesCount}} municipalities</div>
+                                <div class="meta">
+                                  <span class="cinema">{{cities}} cities, {{villages}} villages</span>
+                                </div>
+                            </div>
+                        {{/with}}
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+        <h3 class="ui dividing header">This municipality belongs to:</h3>
+        {{#if alone}}
+            <div class="ui floating success message stuff">
+                <p>Nice!</p>
+            </div>
+        {{/if}}
+        {{#if fail}}
+            <div class="ui floating negative message stuff">
+                <p>Nope...</p>
+            </div>
+        {{/if}}
+        <select class="ui search selection dropdown" id="search-select">
+            <option value="">Province</option>
+            <option value="0">Благоевград</option>
+            <option value="1">Бургас</option>
+            <option value="2">Варна</option>
+            <option value="3">Велико Търново</option>
+            <option value="4">Видин</option>
+            <option value="5">Враца</option>
+            <option value="6">Габрово</option>
+            <option value="7">Добрич</option>
+            <option value="8">Кърджали</option>
+            <option value="9">Кюстендил</option>
+            <option value="10">Ловеч</option>
+            <option value="11">Монтана</option>
+            <option value="12">Пазарджик</option>
+            <option value="13">Перник</option>
+            <option value="14">Плевен</option>
+            <option value="15">Пловдив</option>
+            <option value="16">Разград</option>
+            <option value="17">Русе</option>
+            <option value="18">Силистра</option>
+            <option value="19">Сливен</option>
+            <option value="20">Смолян</option>
+            <option value="21">Софийска област</option>
+            <option value="22">София</option>
+            <option value="23">Стара Загора</option>
+            <option value="24">Търговище</option>
+            <option value="25">Хасково</option>
+            <option value="26">Шумен</option>
+            <option value="27">Ямбол</option>
+        </select>
+        <a href="#" class="ui button guess">Guess</a>
+        <a href="#" class="ui button positive hint">Hint</a>
+        <a href="#" class="ui button negative show">Show</a>
+        <div class="ui container raised stuff">
+        <a href="#" class="ui container raised button stuff new">New municipality</a>
+        </div>
+    </div>
+</template>
+
+<template name="menu">
+    <div class="ui container">
+        <div class="ui large secondary pointing menu">
+            <a class="toc item"><i class="sidebar icon"></i></a>
+            <a href="/" class="item">Municipalities</a>
+        </div>
+    </div>
+</template>
+
+<template name="footer">
+    <div class="ui vertical footer segment">
+        <div class="ui container">
+            <p>Personal georgraphy test for Kalina Anastasova</p>
+            <p>Developed by Georgi Marinov</p>
+            <p>April, 2018</p>
+        </div>
+    </div>
+</template>
